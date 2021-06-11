@@ -1,6 +1,6 @@
 # Ibunda Studi Kasus
 
-> This is a port of the original [Ping CRM](https://github.com/inertiajs/pingcrm) written in Laravel and React JS.
+> This is a repo of [Test Psikologi Laravel React](https://github.com/agilworld/test-psikologi-laravel-react.git) written in Laravel and React JS.
 
 
 ## Installation
@@ -8,8 +8,8 @@
 Clone the repo locally:
 
 ```sh
-git clone https://github.com/landish/pingcrm-react.git
-cd pingcrm-react
+git clone https://github.com/agilworld/test-psikologi-laravel-react.git
+cd test-psikologi-laravel-react
 ```
 
 Install PHP dependencies:
@@ -22,12 +22,6 @@ Install NPM dependencies:
 
 ```sh
 npm install
-```
-
-Build assets:
-
-```sh
-npm run dev
 ```
 
 Setup configuration:
@@ -44,6 +38,11 @@ php artisan key:generate
 
 Create an SQLite database. You can also use another database (MySQL, Postgres), simply update your configuration accordingly.
 
+if you have no sqlite3 installed. Please go install it first
+```sh
+sudo apt-get install php7.3-sqlite sqlite3
+```
+
 ```sh
 touch database/database.sqlite
 ```
@@ -51,7 +50,7 @@ touch database/database.sqlite
 Run database migrations:
 
 ```sh
-php artisan migrate
+php artisan migrate:fresh
 ```
 
 Run database seeder:
@@ -60,13 +59,14 @@ Run database seeder:
 php artisan db:seed
 ```
 
-Run artisan server:
+Development serve & Build assets:
 
 ```sh
 php artisan serve
+npm run watch
 ```
 
-You're ready to go! [Visit Demo](http://127.0.0.1:8000/) in your browser, and login with:
+You're ready to go! [Visit Demo](http://localhost:8000/) in your browser, and login with:
 
 - **Username:** soeokarno@indonesia.com
 - **Password:** 12345678
