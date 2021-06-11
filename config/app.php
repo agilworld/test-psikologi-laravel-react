@@ -228,4 +228,95 @@ return [
 
     ],
 
+
+
+    "qas" => [
+        [
+            "q" => "Dalam 4 minggu terakhir, seberapa sering <strong>Anda tiba-tiba merasa lelah?</strong>" ,
+            "o" => [
+                "Tidak Pernah",
+                "Jarang",
+                "Kadang Kadang",
+                "Sering",
+                "Selalu"
+            ]
+        ],
+        [
+            "q" => "Dalam 4 minggu terakhir, seberapa sering <strong>Anda merasa cemas?</strong>",
+            "o" => [
+                "Tidak Pernah",
+                "Jarang",
+                "Kadang Kadang",
+                "Sering",
+                "Selalu"
+            ]
+        ],
+
+        [
+            "q" => "Dalam 4 minggu terakhir, seberapa sering <strong>Anda merasa cemas sampai tidak bisa menenangkan diri sendiri meskipun ada bantuan?</strong>",
+            "o" => [
+                "Tidak Pernah",
+                "Jarang",
+                "Kadang Kadang",
+                "Sering",
+                "Selalu"
+            ]
+        ],
+        [
+            "q" => "Dalam 4 minggu terakhir, seberapa sering <strong>Anda merasa putus asa?</strong>",
+            "o" => [
+                "Tidak Pernah",
+                "Jarang",
+                "Kadang Kadang",
+                "Sering",
+                "Selalu"
+            ]
+        ],
+
+        [
+            "q" => "Dalam 4 minggu terakhir, seberapa sering <strong>Anda merasa gelisah atau tidak tenang?</strong>",
+            "o" => [
+                "Tidak Pernah",
+                "Jarang",
+                "Kadang Kadang",
+                "Sering",
+                "Selalu"
+            ]
+        ],
+
+        [
+            "q" => "Dalam 4 minggu terakhir, seberapa sering <strong>Anda merasa sangat gelisah sampai Anda tidak bisa tidur dengan tenang?</strong>",
+            "o" => [
+                "Tidak Pernah",
+                "Jarang",
+                "Kadang Kadang",
+                "Sering",
+                "Selalu"
+            ]
+        ],
+
+        [
+            "q" => "Dalam 4 minggu terakhir, seberapa sering <strong>Anda merasa depresi/sedih yang mendalam?</strong>",
+            "o" => [
+                "Tidak Pernah",
+                "Jarang",
+                "Kadang Kadang",
+                "Sering",
+                "Selalu"
+            ]
+        ],
+
+        [
+            "q" => "Dalam 4 minggu terakhir, seberapa sering <strong>Anda merasa sulit melakukan sesuatu yang biasanya mudah dilakukan?</strong>",
+            "o" => [
+                "Tidak Pernah",
+                "Jarang",
+                "Kadang Kadang",
+                "Sering",
+                "Selalu"
+            ]
+        ]
+
+    ]
+
 ];

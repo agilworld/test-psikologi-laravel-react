@@ -7,28 +7,27 @@ import DeleteButton from '@/Shared/DeleteButton';
 import LoadingButton from '@/Shared/LoadingButton';
 import TextInput from '@/Shared/TextInput';
 import SelectInput from '@/Shared/SelectInput';
-import FileInput from '@/Shared/FileInput';
 import TrashedMessage from '@/Shared/TrashedMessage';
 
 const Edit = () => {
-  const { user } = usePage().props;
+  const { user, roles } = usePage().props;
   const { data, setData, errors, post, processing } = useForm({
     first_name: user.first_name || '',
     last_name: user.last_name || '',
     email: user.email || '',
     password: user.password || '',
     owner: user.owner ? '1' : '0' || '0',
-    photo: '',
+    role_id:user.role_id || null,
 
     // NOTE: When working with Laravel PUT/PATCH requests and FormData
     // you SHOULD send POST request and fake the PUT request like this.
     _method: 'PUT'
   });
 
+  console.log(user)
+
   function handleSubmit(e) {
     e.preventDefault();
-
-    // NOTE: We are using POST method here, not PUT/PACH. See comment above.
     post(route('users.update', user.id));
   }
 
@@ -51,16 +50,14 @@ const Edit = () => {
         <h1 className="text-3xl font-bold">
           <InertiaLink
             href={route('users')}
-            className="text-indigo-600 hover:text-indigo-700"
+            className="text-green-600 hover:text-green-700"
           >
             Users
           </InertiaLink>
-          <span className="mx-2 font-medium text-indigo-600">/</span>
+          <span className="mx-2 font-medium text-green-600">/</span>
           {data.first_name} {data.last_name}
         </h1>
-        {user.photo && (
-          <img className="block w-8 h-8 ml-4 rounded-full" src={user.photo} />
-        )}
+
       </div>
       {user.deleted_at && (
         <TrashedMessage onRestore={restore}>
@@ -115,15 +112,18 @@ const Edit = () => {
               <option value="1">Yes</option>
               <option value="0">No</option>
             </SelectInput>
-            <FileInput
+
+            <SelectInput
               className="w-full pb-8 pr-6 lg:w-1/2"
-              label="Photo"
-              name="photo"
-              accept="image/*"
-              errors={errors.photo}
-              value={data.photo}
-              onChange={photo => setData('photo', photo)}
-            />
+              label="Role"
+              name="role_id"
+              errors={errors.role_id}
+              value={data.role_id}
+              onChange={e => setData('role_id', e.target.value)}
+            >
+              {roles.map(role=><option value={role.id}>{role.name}</option>)}
+            </SelectInput>
+
           </div>
           <div className="flex items-center px-8 py-4 bg-gray-100 border-t border-gray-200">
             {!user.deleted_at && (

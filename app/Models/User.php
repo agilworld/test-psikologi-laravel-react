@@ -4,15 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use League\Glide\Server;
-use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\URL;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
-use Illuminate\Http\UploadedFile;
 
 class User extends Model implements AuthenticatableContract, AuthorizableContract
 {
@@ -22,14 +19,24 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         'owner' => 'boolean',
     ];
 
-    public function account()
-    {
-        return $this->belongsTo(Account::class);
-    }
-
     public function getNameAttribute()
     {
         return $this->first_name.' '.$this->last_name;
+    }
+
+    public function getRoleAttribute()
+    {
+        return $this->belongsTo(Role::class, "role_id", "id")->first();
+    }
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class, "role_id", "id");
+    }
+
+    public function setRoleIdAttribute($role_id)
+    {
+        $this->attributes['role_id'] = intval($role_id);
     }
 
     public function setPasswordAttribute($password)
@@ -37,24 +44,6 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         if(!$password) return;
 
         $this->attributes['password'] = Hash::make($password);
-    }
-
-    public function setPhotoAttribute($photo)
-    {
-        if(!$photo) return;
-
-        $this->attributes['photo_path'] = $photo instanceof UploadedFile ? $photo->store('users') : $photo;
-    }
-
-    public function getPhotoAttribute() {
-        return $this->photoUrl(['w' => 40, 'h' => 40, 'fit' => 'crop']);
-    }
-
-    public function photoUrl(array $attributes)
-    {
-        if ($this->photo_path) {
-            return URL::to(App::make(Server::class)->fromPath($this->photo_path, $attributes));
-        }
     }
 
     public function isDemoUser()

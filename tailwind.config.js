@@ -78,7 +78,12 @@ module.exports = {
     }
   },
   variants: {
-    extend: {}
+    extend: {
+      borderStyle: ['hover', 'focus'],
+      borderWidth: ['hover', 'focus'],
+      borderColor: ['hover', 'focus', 'checked'],
+      backgroundColor: ['checked'],
+    }
   },
   plugins: []
 };

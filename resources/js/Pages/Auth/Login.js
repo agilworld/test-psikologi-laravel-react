@@ -7,9 +7,10 @@ import LoadingButton from '@/Shared/LoadingButton';
 import TextInput from '@/Shared/TextInput';
 
 export default () => {
+  const LogoUrl = 'https://www.ibunda.id/tespsikologi/assets/img/icon/ibunda.png';
   const { data, setData, errors, post, processing } = useForm({
-    email: 'johndoe@example.com',
-    password: 'secret',
+    email: 'soekarno@indonesia.com',
+    password: '12345678',
     remember: true
   });
 
@@ -19,19 +20,20 @@ export default () => {
   }
 
   return (
-    <div className="flex items-center justify-center min-h-screen p-6 bg-indigo-900">
+    <div className="flex items-center justify-center min-h-screen p-6 bg-white">
       <Helmet title="Login" />
       <div className="w-full max-w-md">
-        <Logo
-          className="block w-full max-w-xs mx-auto text-white fill-current"
-          height={50}
-        />
+
         <form
           onSubmit={handleSubmit}
           className="mt-8 overflow-hidden bg-white rounded-lg shadow-xl"
         >
-          <div className="px-10 py-12">
-            <h1 className="text-3xl font-bold text-center">Welcome Back!</h1>
+          <div className="px-10 py-6">
+            <div className="text-center mx-auto">
+              <img src={LogoUrl} className="text-white mx-auto fill-current" />
+            </div>
+            <h1 className="text-lg font-bold text-center">User Administration</h1>
+
             <div className="w-24 mx-auto mt-6 border-b-2" />
             <TextInput
               className="mt-10"
@@ -66,18 +68,18 @@ export default () => {
               <span className="text-sm">Remember Me</span>
             </label>
           </div>
-          <div className="flex items-center justify-between px-10 py-4 bg-gray-100 border-t border-gray-200">
-            <a className="hover:underline" tabIndex="-1" href="#reset-password">
-              Forgot password?
-            </a>
+
+          <div className="items-center justify-between px-10 mb-6 py-4 bg-gray-100 border-t border-gray-200">
             <LoadingButton
-              type="submit"
               loading={processing}
-              className="btn-indigo"
+              type="submit"
+              style={{display:"block"}}
+              className="w-full text-center mx-auto btn-indigo"
             >
-              Login
+              Log In
             </LoadingButton>
           </div>
+
         </form>
       </div>
     </div>

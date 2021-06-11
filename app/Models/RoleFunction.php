@@ -2,17 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\SoftDeletes;
-
-class Organization extends Model
+class RoleFunction extends Model
 {
-    use SoftDeletes, HasFactory;
-
-    public function contacts()
-    {
-        return $this->hasMany(Contact::class);
-    }
+    protected $table = "roles_functions";
 
     public function scopeFilter($query, array $filters)
     {

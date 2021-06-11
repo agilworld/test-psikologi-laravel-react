@@ -17,8 +17,8 @@ const isHotWithSSL =
 const hmrOptions = {
   // Setting "host" to "0.0.0.0" is required, if you are visiting
   // your app via http://127.0.0.1:8000 or http://localhost:8000
-  host: isHotWithSSL ? host : '0.0.0.0',
-  port: '8080'
+  host: isHotWithSSL ? host : '127.0.0.1',
+  port: '8001'
 };
 
 // This will be used in mix.webpackConfig(...)

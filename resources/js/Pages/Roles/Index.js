@@ -4,24 +4,26 @@ import Layout from '@/Shared/Layout';
 import Icon from '@/Shared/Icon';
 import SearchFilter from '@/Shared/SearchFilter';
 import Pagination from '@/Shared/Pagination';
+import { isEmpty, capitalize } from "lodash"
 
 const Index = () => {
-  const { organizations } = usePage().props;
+  const { roles } = usePage().props;
   const {
     data,
     meta: { links }
-  } = organizations;
+  } = roles;
+  console.log(data)
   return (
     <div>
-      <h1 className="mb-8 text-3xl font-bold">Organizations</h1>
+      <h1 className="mb-8 text-3xl font-bold">Roles</h1>
       <div className="flex items-center justify-between mb-6">
         <SearchFilter />
         <InertiaLink
           className="btn-indigo focus:outline-none"
-          href={route('organizations.create')}
+          href={route('roles.create')}
         >
           <span>Create</span>
-          <span className="hidden md:inline"> Organization</span>
+          <span className="hidden md:inline"> Role</span>
         </InertiaLink>
       </div>
       <div className="overflow-x-auto bg-white rounded shadow">
@@ -29,62 +31,42 @@ const Index = () => {
           <thead>
             <tr className="font-bold text-left">
               <th className="px-6 pt-5 pb-4">Name</th>
-              <th className="px-6 pt-5 pb-4">City</th>
-              <th className="px-6 pt-5 pb-4" colSpan="2">
-                Phone
-              </th>
+              <th className="px-6 pt-5 pb-4">Function</th>
+
             </tr>
           </thead>
           <tbody>
-            {data.map(({ id, name, city, phone, deleted_at }) => {
+            {data.map(({ id, name, functions, hide, deleted_at }) => {
               return (
                 <tr
                   key={id}
                   className="hover:bg-gray-100 focus-within:bg-gray-100"
                 >
                   <td className="border-t">
-                    <InertiaLink
-                      href={route('organizations.edit', id)}
+                    {hide=="1" ? <span className="flex items-center px-6 py-4 focus:text-indigo-700 focus:outline-none">{name}</span>:<InertiaLink
+                      href={route('roles.edit', id)}
                       className="flex items-center px-6 py-4 focus:text-indigo-700 focus:outline-none"
                     >
                       {name}
-                      {deleted_at && (
-                        <Icon
-                          name="trash"
-                          className="flex-shrink-0 w-3 h-3 ml-2 text-gray-400 fill-current"
-                        />
-                      )}
-                    </InertiaLink>
+                    </InertiaLink>}
                   </td>
                   <td className="border-t">
-                    <InertiaLink
-                      tabIndex="-1"
-                      href={route('organizations.edit', id)}
-                      className="flex items-center px-6 py-4 focus:text-indigo focus:outline-none"
-                    >
-                      {city}
-                    </InertiaLink>
+                    {hide=="1" && "All Capabilites"}
+                    {!isEmpty(functions) && functions.map((fuc,idx)=><span>{fuc.menu} <strong>{capitalize(fuc.capability)}</strong>{functions.length-1>idx?", ":""}</span>
+                    )}
                   </td>
-                  <td className="border-t">
-                    <InertiaLink
-                      tabIndex="-1"
-                      href={route('organizations.edit', id)}
-                      className="flex items-center px-6 py-4 focus:text-indigo focus:outline-none"
-                    >
-                      {phone}
-                    </InertiaLink>
-                  </td>
+
                   <td className="w-px border-t">
-                    <InertiaLink
+                    {hide=="0" && <InertiaLink
                       tabIndex="-1"
-                      href={route('organizations.edit', id)}
+                      href={route('roles.edit', id)}
                       className="flex items-center px-4 focus:outline-none"
                     >
                       <Icon
                         name="cheveron-right"
                         className="block w-6 h-6 text-gray-400 fill-current"
                       />
-                    </InertiaLink>
+                    </InertiaLink>}
                   </td>
                 </tr>
               );
@@ -92,7 +74,7 @@ const Index = () => {
             {data.length === 0 && (
               <tr>
                 <td className="px-6 py-4 border-t" colSpan="4">
-                  No organizations found.
+                  No roles found.
                 </td>
               </tr>
             )}
@@ -104,6 +86,6 @@ const Index = () => {
   );
 };
 
-Index.layout = page => <Layout title="Organizations" children={page} />;
+Index.layout = page => <Layout title="Roles" children={page} />;
 
 export default Index;

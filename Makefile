@@ -42,18 +42,8 @@ test-coverage:
 
 note:
 	@echo "\n======================================== [NOTE] ========================================"
-	@echo "You're ready to go! Visit Ping CRM in your browser, and login with:					 "
+	@echo "You're ready to go! and login with:					 "
 	@echo "[*] Username: johndoe@example.com														 "
 	@echo "[*] Password: secret"
 	@echo "========================================================================================\n"
 
-bannar:
-	@echo " _____ _              _____ _____  __  __"
-	@echo "|  __ (_)            / ____|  __ \|  \/  |"
-	@echo "| |__) | _ __   __ _| |    | |__) | \  / |"
-	@echo "|  ___/ | '_ \ / _\` | |    |  _  /| |\/| |"
-	@echo "| |   | | | | | (_| | |____| | \ \| |  | |"
-	@echo "|_|   |_|_| |_|\__, |\_____|_|  \_\_|  |_|"
-	@echo "                __/ |"
-	@echo "               |___/"
-	@echo "\n"

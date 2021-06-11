@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use App\Http\Resources\UserResource;
 use Inertia\Middleware;
 use Illuminate\Http\Request;
+use App\Models\Role;
 use Illuminate\Support\Facades\Auth;
 
 class HandleInertiaRequests extends Middleware
@@ -41,7 +42,10 @@ class HandleInertiaRequests extends Middleware
         return array_merge(parent::share($request), [
             'auth' => function () {
                 return [
-                    'user' => Auth::check() ? new UserResource(Auth::user()->load('account')) : null
+                    'user' => Auth::check() ? new UserResource(Auth::user()) : null,
+                    'roles' => Auth::user() && Auth()->user()->role_id ? Role::find(Auth::user()->role_id)->functions()->mapWithKeys(function ($item) {
+                        return [$item['id'] => $item['name']];
+                    })->values()->toArray() : null
                 ];
             },
             'flash' => function () use ($request) {

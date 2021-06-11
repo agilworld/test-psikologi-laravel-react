@@ -75,7 +75,7 @@ export default () => {
                 <option value="owner">Owner</option>
               </SelectInput>
             )}
-            <SelectInput
+            {filters.hasOwnProperty('trashed') && (<SelectInput
               label="Trashed"
               name="trashed"
               value={values.trashed}
@@ -84,10 +84,10 @@ export default () => {
               <option value=""></option>
               <option value="with">With Trashed</option>
               <option value="only">Only Trashed</option>
-            </SelectInput>
+            </SelectInput>)}
           </div>
         </div>
-        <button
+        {filters.hasOwnProperty('role') && filters.hasOwnProperty('trashed') && <button
           onClick={() => setOpened(true)}
           className="px-4 border-r rounded-l md:px-6 hover:bg-gray-100 focus:outline-none focus:border-white focus:ring-2 focus:ring-indigo-400 focus:z-10"
         >
@@ -101,9 +101,9 @@ export default () => {
               <path d="M239.998 239.999L0 0h961.243L721.246 240c-131.999 132-240.28 240-240.624 239.999-.345-.001-108.625-108.001-240.624-240z" />
             </svg>
           </div>
-        </button>
+        </button>}
         <input
-          className="relative w-full px-6 py-3 rounded-r focus:outline-none focus:ring-2 focus:ring-indigo-400"
+          className="relative w-full px-6 py-3 rounded-r focus:outline-none focus:ring-2 focus:ring-green-400"
           autoComplete="off"
           type="text"
           name="search"

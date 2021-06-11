@@ -1,10 +1,7 @@
-# Ping CRM React
+# Ibunda Studi Kasus
 
-A demo application to illustrate how [Inertia.js](https://inertiajs.com/) works with [Laravel](https://laravel.com/) and [React](https://reactjs.org/).
+> This is a port of the original [Ping CRM](https://github.com/inertiajs/pingcrm) written in Laravel and React JS.
 
-> This is a port of the original [Ping CRM](https://github.com/inertiajs/pingcrm) written in Laravel and Vue.
-
-![](https://raw.githubusercontent.com/landish/pingcrm-react/master/screenshot.png)
 
 ## Installation
 
@@ -69,21 +66,7 @@ Run artisan server:
 php artisan serve
 ```
 
-You're ready to go! [Visit Ping CRM](http://127.0.0.1:8000/) in your browser, and login with:
+You're ready to go! [Visit Demo](http://127.0.0.1:8000/) in your browser, and login with:
 
-- **Username:** johndoe@example.com
-- **Password:** secret
-
-## Running tests
-
-To run the Ping CRM tests, run:
-
-```
-phpunit
-```
-
-## Credits
-
-- Original work by Jonathan Reinink (@reinink) and contributors
-- Port to Ruby on Rails by Georg Ledermann (@ledermann)
-- Port to React by Lado Lomidze (@landish)
+- **Username:** soeokarno@indonesia.com
+- **Password:** 12345678

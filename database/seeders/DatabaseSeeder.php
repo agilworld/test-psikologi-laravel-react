@@ -3,38 +3,33 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-use App\Models\Account;
-use App\Models\Contact;
-use App\Models\Organization;
+use App\Models\Role;
+use App\Models\RoleHasFunction;
+
 use Illuminate\Database\Seeder;
+use Database\Seeders\RoleFunctions;
 
 class DatabaseSeeder extends Seeder
 {
     public function run()
     {
-        $account = Account::create(['name' => 'Acme Corporation']);
-
-        User::factory()->create([
-            'account_id' => $account->id,
-            'first_name' => 'John',
-            'last_name' => 'Doe',
-            'email' => 'johndoe@example.com',
-            'owner' => true,
+        $this->call([
+            RoleFunctions::class,
         ]);
 
-        User::factory()->count(5)->create([
-            'account_id' => $account->id
+        $role = Role::create([
+            'name' => 'Superadmin',
+            'hide' => 1
         ]);
 
-        $organizations = Organization::factory()->count(100)->create([
-            'account_id' => $account->id
+        $user = User::create([
+            'role_id' => $role->id,
+            'email' => "soekarno@indonesia.com",
+            'password' => "12345678",
+            'first_name' => 'Soekarno',
+            'last_name' => 'Indonesia',
+            'owner' => 1
         ]);
 
-        Contact::factory()->count(100)->create([
-            'account_id' => $account->id
-        ])
-            ->each(function (Contact  $contact) use ($organizations) {
-                $contact->update(['organization_id' => $organizations->random()->id]);
-            });
     }
 }

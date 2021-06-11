@@ -7,6 +7,7 @@ use App\Http\Requests\UserStoreRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Http\Resources\UserCollection;
 use App\Http\Resources\UserResource;
+use App\Models\Role;
 use App\Models\User;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
@@ -20,8 +21,7 @@ class UsersController extends Controller
         return Inertia::render('Users/Index', [
             'filters' => Request::all('search', 'role', 'trashed'),
             'users' => new UserCollection(
-                Auth::user()->account->users()
-                    ->orderByName()
+                User::orderByName()
                     ->filter(Request::only('search', 'role', 'trashed'))
                     ->paginate()
                     ->appends(Request::all())
@@ -31,12 +31,12 @@ class UsersController extends Controller
 
     public function create()
     {
-        return Inertia::render('Users/Create');
+        return Inertia::render('Users/Create', ['roles' => Role::all()]);
     }
 
     public function store(UserStoreRequest $request)
     {
-        Auth::user()->account->users()->create(
+        User::create(
             $request->validated()
         );
 
@@ -47,6 +47,7 @@ class UsersController extends Controller
     {
         return Inertia::render('Users/Edit', [
             'user' => new UserResource($user),
+            'roles' => Role::all()
         ]);
     }
 
