@@ -39,7 +39,9 @@ php artisan key:generate
 Create an SQLite database. You can also use another database (MySQL, Postgres), simply update your configuration accordingly.
 
 if you have no sqlite3 installed. Please go install it first
+
 **Linux Ubuntu**
+
 ```sh
 sudo apt-get install php7.3-sqlite sqlite3
 sudo phpenmod sqlite3
@@ -47,6 +49,7 @@ sudo service apache2 restart
 ```
 
 **Windows OS**
+
 Download [SQL Lite Tools here](https://www.sqlite.org/2021/sqlite-tools-win32-x86-3350500.zip) and unzip file, run sqlite3.exe and make sure php extension php sqlite3 (at php.ini) enabled and then restart your Xampp server or your favorite web server that installed on your OS
 
 ```sh
