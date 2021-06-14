@@ -11,6 +11,7 @@
         "php": "^7.2.5",
         "ext-exif": "*",
         "ext-gd": "*",
+        "ext-sqlite3":"*",
         "barryvdh/laravel-debugbar": "^3.2",
         "beyondcode/laravel-dump-server": "^1.0",
         "facade/ignition": "^2.3.6",
@@ -52,6 +53,8 @@
     "scripts": {
         "compile": [
             "npm run prod",
+            "@rm -fr database/database.sqlite",
+            "@touch database/database.sqlite",
             "@php artisan migrate:fresh --force",
             "@php artisan db:seed --force"
         ],
